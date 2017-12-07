@@ -1,19 +1,19 @@
 # This function has the following inputs:
 # X (user given matrix), Y (user given vector)
 # currentGeneration: the initialized generation and the selectively produced generations
-# popNum: size of the population for chromesomes, default as 100
+# popNum: size of the population for chromosomes, default as 100
 # geneLength
 # reg: regression type, lm as default
 # criterion: objective criterion function, AIC as default
 
-# The output dataframe is popNum by 2, with the first column consists of chromesomes and the second column consists of fitness values
+# The output dataframe is popNum by 2, with the first column consists of chromosomes and the second column consists of fitness values
 
 evaluation <- function(X, Y, currentGeneration, popNum = 100, reg = 'lm', criterion = 'AIC'){
   # construct the outcome dataframe: popNum by 2
-  # column 1: ranking of chromesome, column 2: AIC fitness value
+  # column 1: ranking of chromosome, column 2: AIC fitness value
   df_init <- as.data.frame(matrix(nrow = popNum, ncol = 2))
-  colnames(df_init) <- c("chromesome","fitness")
-  df_init$chromesome <- apply(currentGeneration, 1, paste, collapse = '') # pasting chromesomes as strings
+  colnames(df_init) <- c("chromosome","fitness")
+  df_init$chromosome <- apply(currentGeneration, 1, paste, collapse = '') # pasting chromosomes as strings
   
   # default setting: regression reg = lm
   if(reg == 'lm'){

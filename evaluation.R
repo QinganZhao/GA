@@ -32,11 +32,11 @@ evaluation <- function(X, Y, currentGeneration, popNum = 100, reg = 'lm', criter
   }
 
   # regression type = glm
-  else if(reg == 'lm'){
+  else if(reg == 'glm'){
     # criterion is AIC
     if(criterion == 'AIC'){
       for(i in 1:popNum){
-        df_init$fitness[i] <- AIC(lm(Y~as.matrix(X[,which(currentGeneration[i,] == 1, arr.ind = T)])))
+        df_init$fitness[i] <- AIC(glm(Y~as.matrix(X[,which(currentGeneration[i,] == 1, arr.ind = T)])))
       }
     }
     # criterion is another function provided by the user

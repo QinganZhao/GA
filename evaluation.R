@@ -11,22 +11,22 @@
 evaluation <- function(X, Y, currentGeneration, popNum = 100, reg = 'lm', criterion = 'AIC'){
   # construct the outcome dataframe: popNum by 2
   # column 1: ranking of chromosome, column 2: AIC fitness value
-  df_init <- as.data.frame(matrix(nrow = popNum, ncol = 2))
-  colnames(df_init) <- c("chromosome","fitness")
-  df_init$chromosome <- apply(currentGeneration, 1, paste, collapse = '') # pasting chromosomes as strings
+  df_current <- as.data.frame(matrix(nrow = popNum, ncol = 2))
+  colnames(df_current) <- c("chromosome","fitness")
+  df_current$chromosome <- apply(currentGeneration, 1, paste, collapse = '') # pasting chromosomes as strings
   
   # default setting: regression reg = lm
   if(reg == 'lm'){
     # criterion is AIC
     if(criterion == 'AIC'){
       for(i in 1:popNum){
-        df_init$fitness[i] <- AIC(lm(Y~as.matrix(X[,which(currentGeneration[i,] == 1, arr.ind = T)])))
+        df_current$fitness[i] <- AIC(lm(Y~as.matrix(X[,which(currentGeneration[i,] == 1, arr.ind = T)])))
       }
     }
     # criterion is another function provided by the user
     else{
       for(i in 1:popNum){
-        df_init$fitness[i] <- eval(criterion, lm(Y ~ as.matrix(X[,which(currentGeneration[i,] == 1, arr.ind = T)])))
+        df_current$fitness[i] <- eval(criterion, lm(Y ~ as.matrix(X[,which(currentGeneration[i,] == 1, arr.ind = T)])))
       }
     }
   }
@@ -36,13 +36,13 @@ evaluation <- function(X, Y, currentGeneration, popNum = 100, reg = 'lm', criter
     # criterion is AIC
     if(criterion == 'AIC'){
       for(i in 1:popNum){
-        df_init$fitness[i] <- AIC(glm(Y~as.matrix(X[,which(currentGeneration[i,] == 1, arr.ind = T)])))
+        df_current$fitness[i] <- AIC(glm(Y~as.matrix(X[,which(currentGeneration[i,] == 1, arr.ind = T)])))
       }
     }
     # criterion is another function provided by the user
     else{
       for(i in 1:popNum){
-        df_init$fitness[i] <- eval(criterion, lm(Y ~ as.matrix(X[,which(currentGeneration[i,] == 1, arr.ind = T)])))
+        df_current$fitness[i] <- eval(criterion, lm(Y ~ as.matrix(X[,which(currentGeneration[i,] == 1, arr.ind = T)])))
       }
     }
   }
@@ -51,7 +51,7 @@ evaluation <- function(X, Y, currentGeneration, popNum = 100, reg = 'lm', criter
     stop("Regression type must be 'lm' or 'glm'.")
   }
 
-  return(df_init)
+  return(df_current)
 }
 
 

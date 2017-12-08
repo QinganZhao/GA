@@ -1,4 +1,4 @@
-##### support function 1: popInitial() #####
+##### support function: popInitial() #####
 
 # this function intializes the population
 popInitial <- function(popNum = 100, geneLength, zeroRate = 0){
@@ -6,7 +6,7 @@ popInitial <- function(popNum = 100, geneLength, zeroRate = 0){
   #   popNum: population number (positive integer)
   #   geneLength: gene length (positive integer)
   #   zeroRate: the rate of zero among the genes of the first generation
-  #output: populations of the first generation with their genes (0/1)
+  #output: populations of the first generation with their genes (0/1 matrix)
   
   if(popNum < 1 | round(popNum) != popNum){
     stop("Population number must be a positive integer.")

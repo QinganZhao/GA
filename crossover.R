@@ -5,8 +5,8 @@ crossover <- function(ch1,ch2,n_cuts = 1) {
   #length of the chromosome
   L <- length(ch1)
   
-  if (L != length(ch2)) {return("the two chromosomes must have the same length")}
-  if (!is.integer(n_cuts)) {return("the number of cuts must be an integer")}
+  if (L != length(ch2)) {stop("the two chromosomes must have the same length")}
+  if (round(n_cuts) != n_cuts) {stop("the number of cuts must be an integer")}
   
   #assign indexes to the cuts
   #for more crossing possibilities, we only keep unique indexes for cuts

@@ -6,7 +6,9 @@ rank_selection <- function(df_current,usingrank = TRUE) {
   #number of chromosomes
   pop <- length(df_current$chromosome)
   
-  if (is.na(df_current)) {return("The are N/A values in the dataframe")}
+  if (is.na(df_current[[1]][sample(1:pop, size = 1)])) {
+    stop("The are N/A values in the dataframe")
+  }
   
   #create the output dataframe
   df <- data.frame(matrix(ncol = 2, nrow = pop))

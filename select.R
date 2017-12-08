@@ -15,7 +15,9 @@ source('mutation.R')
 #this is the primary function of the R package of this project
 #the output of this function should be ...(to be discussed)
 
-select <- function(X, Y, popNum = 100, foo, zeroRate = 0.5){
+select <- function(X, Y, popNum = 100, reg = 'lm', criterion = 'AIC', usingrank = TRUE,
+                   choose_rankBased = TRUE, cross_cutNum = 1, mutation_prob = 0.01,
+                   initial_zeroRate = 0.5){
   
   #X is treated as a data frame; Y is treated as a vector
   X <- as.data.frame(X)
@@ -27,7 +29,7 @@ select <- function(X, Y, popNum = 100, foo, zeroRate = 0.5){
   
   #intialization: generate the first generation
   geneLength <- dim(X)[2]
-  firstGeneration <- popInitial(popNum, geneLength, zeroRate)
+  firstGeneration <- popInitial(popNum, geneLength, zeroRate = initial_zeroRate)
   currentGeneration <- firstGeneration
   
   #first evaluation
@@ -36,14 +38,15 @@ select <- function(X, Y, popNum = 100, foo, zeroRate = 0.5){
   #first rank
   firstRank <- rank_selection(firstEval, usingrank)
   
-  #iterations for the GA algorithm
-  i <- 1
-  max_iter <- 1e6 #max iteration: to be discussed
-  tol <- 1e-6 #tolerance: to be discussed
+  #test part (will be deleted later)
+  foo1 <- chooseChromosomes(firstRank, rankBased = choose_rankBased)
+  foo2 <- breed(foo1, cross_cutNum, mutation_prob)
   
-  for(i in 1:max_iter & error > tol){
+  
+  #iterations for the GA algorithm (and termination)
+
     ## Mia is working on this part. Tommorrow we are going to discuss it.
-  }
+  
   
   return(model)
 }

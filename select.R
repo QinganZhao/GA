@@ -9,6 +9,7 @@ source('rank_selection.R')
 source('choosing.R')
 source('crossover.R')
 source('mutation.R')
+source('breed.R')
 #source('foo.R')
 #...(list all the sources)
 

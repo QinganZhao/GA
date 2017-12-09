@@ -5,7 +5,7 @@
 
 source('popInitial.R')
 source('evaluation.R')
-source('rank_selection.R')
+source('rankSelection.R')
 source('choosing.R')
 source('crossover.R')
 source('mutation.R')
@@ -37,7 +37,7 @@ select <- function(X, Y, popNum = 100, reg = 'lm', criterion = 'AIC', usingrank 
   firstEval <- evaluation(X, Y, firstGeneration, popNum, reg, criterion)
   
   #first rank
-  firstRank <- rank_selection(firstEval, usingrank)
+  firstRank <- rankSelection(firstEval, usingrank)
   
   #test part (will be deleted later)
   foo1 <- chooseChromosomes(firstRank, rankBased = choose_rankBased)

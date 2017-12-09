@@ -28,8 +28,12 @@ rankSelection <- function(dfCurrent,usingrank = TRUE) {
     
   } else {
 #alternate case: create selection probabilities proportionate to fitness
-    sumFit = sum(dfCurrent$fitness)
-    df$probability <- dfCurrent$fitness[reorder] / sumFit
+#excludes the less fit from the selection
+    tmp <- dfCurrent$fitness[reorder]
+    if (sum(is.infinite(tmp))>0) { stop("some of the fitness values are infinite, choose usingrank=TRUE")}
+    tmp <- -(tmp - max(tmp))
+    sumFit = sum(tmp)
+    df$probability <- tmp / sumFit
   }
   return(df)
 }

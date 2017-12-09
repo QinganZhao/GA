@@ -5,7 +5,7 @@
 
 source('popInitial.R')
 source('evaluation.R')
-source('rank_selection.R')
+source('rankSelection.R')
 source('choosing.R')
 source('crossover.R')
 source('mutation.R')
@@ -17,7 +17,7 @@ source('breed.R')
 #the output of this function should be ...(to be discussed)
 
 select <- function(X, Y, popNum = 100, reg = 'lm', criterion = 'AIC', usingrank = TRUE,
-                   choose_rankBased = TRUE, cross_cutNum = 1, mutation_prob = 0.01,
+                   choose_rankBased = TRUE, pCurve = FALSE, cross_cutNum = 1, mutation_prob = 0.01,
                    initial_zeroRate = 0.5, t_last = 15, t_max = 500){
   
   #X is treated as a data frame; Y is treated as a vector
@@ -37,7 +37,7 @@ select <- function(X, Y, popNum = 100, reg = 'lm', criterion = 'AIC', usingrank 
   firstEval <- evaluation(X, Y, firstGeneration, popNum, reg, criterion)
   
   #first rank
-  firstRank <- rank_selection(firstEval, usingrank)
+  firstRank <- rankSelection(firstEval, usingrank)
   
   #test part (will be deleted later)
   foo1 <- chooseChromosomes(firstRank, rankBased = choose_rankBased)
@@ -47,14 +47,19 @@ select <- function(X, Y, popNum = 100, reg = 'lm', criterion = 'AIC', usingrank 
   # This can go right after the evaluation as well.
   t = 1
   AIC_record <- c(min(firstEval$fitness))
-  
+  mutation_prob_backup <- mutation_prob
   while(t <= t_last | (t > t_last & t <= t_max & approxEqual(min(df_current$fitness), mean(AIC_record[(t - t_last + 1):t])) = FALSE)){
   # OR while(t <= t_last | (t > t_last & t <= t_max & converge(df_current, cvgRate_allele = 0.9, cvgRate_chrom = 0.9) = FALSE)
+	# curving the mutation probability
+	if(pCurve == TRUE)
+	{
+		mutation_prob <- min(mutation_prob_backup + 1/(t+1),1)
+	}
     crtChosen <- choosing(firstRank)
     nextGeneration <- breed(crtChosen)
     df_current <- evaluation(nextGeneration)
     t = t + 1
-    AIC_record <- c(AIC_record, min(df_current$fitness))
+	AIC_record <- c(AIC_record, min(df_current$fitness))
   }
   
   # the returned model

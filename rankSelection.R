@@ -2,11 +2,11 @@
 #the input should be a database with one column corresponding to the , and one to the AIC values of each chromosome
 # 2 options are available: using the rank of the chromosome (default) or its fitness.
 
-rank_selection <- function(df_current,usingrank = TRUE) {
+rankSelection <- function(dfCurrent,usingrank = TRUE) {
   #number of chromosomes
-  pop <- length(df_current$chromosome)
+  pop <- length(dfCurrent$chromosome)
   
-  if (is.na(df_current[[1]][sample(1:pop, size = 1)])) {
+  if (is.na(dfCurrent[[1]][sample(1:pop, size = 1)])) {
     stop("The are N/A values in the dataframe")
   }
   
@@ -15,8 +15,8 @@ rank_selection <- function(df_current,usingrank = TRUE) {
   colnames(df) <- c("chromosome","probability")
   
   #order the chromosomes by fitness
-  reorder <- order(df_current$fitness, decreasing = TRUE)
-  df$chromosome <- df_current$chromosome[reorder]
+  reorder <- order(dfCurrent$fitness, decreasing = TRUE)
+  df$chromosome <- dfCurrent$chromosome[reorder]
   
   #default case: define selection probabilities using the rank
   if (usingrank) {
@@ -28,8 +28,8 @@ rank_selection <- function(df_current,usingrank = TRUE) {
     
   } else {
 #alternate case: create selection probabilities proportionate to fitness
-    sum_fit = sum(df_current$fitness)
-    df$probability <- df_current$fitness[reorder] / sum_fit
+    sumFit = sum(dfCurrent$fitness)
+    df$probability <- dfCurrent$fitness[reorder] / sumFit
   }
   return(df)
 }

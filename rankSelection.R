@@ -15,7 +15,7 @@ rankSelection <- function(dfCurrent,usingrank = TRUE) {
   colnames(df) <- c("chromosome","probability")
   
   #order the chromosomes by fitness
-  reorder <- order(dfCurrent$fitness, decreasing = TRUE)
+  reorder <- order(dfCurrent$fitness, decreasing = FALSE)
   df$chromosome <- dfCurrent$chromosome[reorder]
   
   #default case: define selection probabilities using the rank

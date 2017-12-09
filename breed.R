@@ -61,5 +61,11 @@ breed <- function(chromoSet, cross_cutNum = 1, mutation_prob = 0.01){
   
   #put two groups together, and the next generation is obtained
   nextGeneration <- rbind(child_gene_mat1, child_gene_mat2)
+  
+  #if a population is identically 0, we force a 'mutation' by change a random gene to 1
+  #since this case cannot pass evaluation()
+  nextGeneration[which(apply(nextGeneration, 1, sum) == 0), 
+                   sample(1:ncol(nextGeneration), 1)] <- 1
+  
   return(nextGeneration)
 }

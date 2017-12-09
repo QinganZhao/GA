@@ -1,2 +1,2 @@
-# projectSTAT243
-Our group project for the course STAT243
+# GA
+An R package based on genetic algorithm for variable selection in regression problems

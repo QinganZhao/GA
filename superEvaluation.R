@@ -19,7 +19,7 @@ superEvaluation <- function(X, Y, currentGeneration, popNum = 100, reg = 'lm', c
     if(criterion == 'AIC'){
       
       #parallelization
-      result <- foreach(i = 1:popSize, .combine = rbind)  %dopar% {
+      result <- foreach(i = 1:popNum, .combine = rbind)  %dopar% {
         fitness <- AIC(lm(Y~as.matrix(X[,which(currentGeneration[i,] == 1, arr.ind = T)])))
         return(fitness)
       }
@@ -27,7 +27,7 @@ superEvaluation <- function(X, Y, currentGeneration, popNum = 100, reg = 'lm', c
     }else{ # criterion is another function provided by the user
       
       #parallelization
-      result <- foreach(i = 1:popSize, .combine = rbind)  %dopar% {
+      result <- foreach(i = 1:popNum, .combine = rbind)  %dopar% {
         fitness <- eval(criterion, lm(Y ~ as.matrix(X[,which(currentGeneration[i,] == 1, arr.ind = T)])))
         return(fitness)
       }
@@ -41,7 +41,7 @@ superEvaluation <- function(X, Y, currentGeneration, popNum = 100, reg = 'lm', c
     if(criterion == 'AIC'){
       
       #parallelization
-      result <- foreach(i = 1:popSize, .combine = rbind)  %dopar% {
+      result <- foreach(i = 1:popNum, .combine = rbind)  %dopar% {
         fitness <- AIC(glm(Y~as.matrix(X[,which(currentGeneration[i,] == 1, arr.ind = T)])))
         return(fitness)
       }
@@ -51,7 +51,7 @@ superEvaluation <- function(X, Y, currentGeneration, popNum = 100, reg = 'lm', c
     else{
       
       #parallelization
-      result <- foreach(i = 1:popSize, .combine = rbind)  %dopar% {
+      result <- foreach(i = 1:popNum, .combine = rbind)  %dopar% {
         fitness <- eval(criterion, glm(Y ~ as.matrix(X[,which(currentGeneration[i,] == 1, arr.ind = T)])))
         return(fitness)
       }

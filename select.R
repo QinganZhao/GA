@@ -1,5 +1,10 @@
 #### IMPORTANT: Please make sure you have installed 'dplyr' package ####
 
+## Please make sure you have installed the following packages if you choose parallelization ##
+## parallel, doParallel, & foreach
+
+########################################################################
+
 #support scripts (functions)
 source('popInitial.R')
 source('evaluation.R')
@@ -14,10 +19,19 @@ source('breed.R')
 #this is the primary function of the R package of this project
 #the output of this function should be the selected predictors 
 
-select <- function(X, Y, popNum = 100, reg = 'lm', criterion = 'AIC', usingrank = TRUE,
-                   cross_cutNum = 1, mutation_prob = 0.01, mut_pCurve = FALSE,
-                   initial_zeroRate = 0.5, min_iter = 10, max_iter = 500){
+select <- function(X, Y, popNum = 100, reg = 'lm', criterion = 'AIC', useParallel = FALSE,
+                   numCores = 4, usingrank = TRUE, cross_cutNum = 1, mutation_prob = 0.01,
+                   mut_pCurve = FALSE, initial_zeroRate = 0.5, min_iter = 10, max_iter = 500){
   
+  #prepare for parallelization if the user choose it
+  if(useParallel == TRUE){
+    source('superEvaluation.R')
+    library(parallel)
+    library(doParallel)
+    library(foreach)
+    nCores <- numCores
+    registerDoParallel(nCores)
+  }
   #X is treated as a data frame; Y is treated as a vector
   X <- as.data.frame(X)
   Y <- as.vector(Y)
@@ -32,7 +46,11 @@ select <- function(X, Y, popNum = 100, reg = 'lm', criterion = 'AIC', usingrank 
   currentGeneration <- firstGeneration
   
   #first evaluation
-  df_current <- evaluation(X, Y, firstGeneration, popNum, reg, criterion)
+  if(useParallel == TRUE){
+    df_current <- superEvaluation(X, Y, firstGeneration, popNum, reg, criterion)
+  }else{
+    df_current <- evaluation(X, Y, firstGeneration, popNum, reg, criterion)
+  }
   
   #iterations for the GA
   #this can go right after the evaluation as well
@@ -58,7 +76,13 @@ select <- function(X, Y, popNum = 100, reg = 'lm', criterion = 'AIC', usingrank 
     crtRank <- rankSelection(df_current, usingrank)
     crtChosen <- chooseChromosomes(crtRank, usingrank)
     nextGeneration <- breed(crtChosen, cross_cutNum, mutation_prob)
-    df_current <- evaluation(X, Y, nextGeneration, popNum, reg, criterion)
+    
+    if(useParallel == TRUE){
+      df_current <- superEvaluation(X, Y, nextGeneration, popNum, reg, criterion)
+    }else{
+      df_current <- evaluation(X, Y, nextGeneration, popNum, reg, criterion)
+    }
+      
 	  AIC_record <- c(AIC_record, min(df_current$fitness))
 	  i <- i + 1
   }

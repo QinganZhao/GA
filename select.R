@@ -65,7 +65,7 @@ select <- function(X, Y, popNum = 100, reg = 'lm', criterion = 'AIC', useParalle
  
 	# curving the mutation probability
 	  if(mut_pCurve == TRUE){
-		  mutation_prob <- min(mutation_prob_backup + 1/(i+1),0.8)
+		  mutation_prob <- min(mutation_prob_backup + 1/(i+1),1)
 	  }
     
     if(i > min_iter){

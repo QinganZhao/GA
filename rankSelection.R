@@ -2,7 +2,7 @@
 #the input should be a database with one column corresponding to the , and one to the AIC values of each chromosome
 # 2 options are available: using the rank of the chromosome (default) or its fitness.
 
-rankSelection <- function(dfCurrent,usingrank = TRUE) {
+rankSelection <- function(dfCurrent,usingRank = TRUE) {
   #number of chromosomes
   pop <- length(dfCurrent$chromosome)
   
@@ -19,7 +19,7 @@ rankSelection <- function(dfCurrent,usingrank = TRUE) {
   df$chromosome <- dfCurrent$chromosome[reorder]
   
   #default case: define selection probabilities using the rank
-  if (usingrank) {
+  if (usingRank) {
     for (i in 1:pop) {
       df$probability[i] <- (pop+1-i)*2/(pop*(pop+1))
       #this formula, suggested by Givens
@@ -30,7 +30,7 @@ rankSelection <- function(dfCurrent,usingrank = TRUE) {
 #alternate case: create selection probabilities proportionate to fitness
 #excludes the less fit from the selection
     tmp <- dfCurrent$fitness[reorder]
-    if (sum(is.infinite(tmp))>0) { stop("some of the fitness values are infinite, choose usingrank=TRUE")}
+    if (sum(is.infinite(tmp))>0) { stop("some of the fitness values are infinite, choose usingRank=TRUE")}
     tmp <- -(tmp - max(tmp))
     sumFit = sum(tmp)
     df$probability <- tmp / sumFit

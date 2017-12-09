@@ -20,7 +20,7 @@ source('breed.R')
 #the output of this function should be the selected predictors 
 
 select <- function(X, Y, popNum = 100, reg = 'lm', criterion = 'AIC', useParallel = FALSE,
-                   numCores = 4, usingrank = TRUE, cross_cutNum = 1, mutation_prob = 0.01,
+                   numCores = 4, usingRank = TRUE, cross_cutNum = 1, mutation_prob = 0.01,
                    mut_pCurve = FALSE, initial_zeroRate = 0.5, min_iter = 10, max_iter = 500){
   
   #prepare for parallelization if the user choose it
@@ -74,8 +74,8 @@ select <- function(X, Y, popNum = 100, reg = 'lm', criterion = 'AIC', useParalle
     }
     
     #implement GA   
-    crtRank <- rankSelection(df_current, usingrank)
-    crtChosen <- chooseChromosomes(crtRank, usingrank)
+    crtRank <- rankSelection(df_current, usingRank)
+    crtChosen <- chooseChromosomes(crtRank, usingRank)
     nextGeneration <- breed(crtChosen, cross_cutNum, mutation_prob)
     
     if(useParallel == TRUE){

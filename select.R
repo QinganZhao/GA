@@ -25,13 +25,14 @@ select <- function(X, Y, popNum = 100, reg = 'lm', criterion = 'AIC', useParalle
   
   #prepare for parallelization if the user choose it
   if(useParallel == TRUE){
-    source('superEvaluation.R')
     library(parallel)
     library(doParallel)
     library(foreach)
     nCores <- numCores
     registerDoParallel(nCores)
+    source('superEvaluation.R')
   }
+  
   #X is treated as a data frame; Y is treated as a vector
   X <- as.data.frame(X)
   Y <- as.vector(Y)

@@ -1,8 +1,6 @@
-## Teammates:
-## Please add all your scripts with your functions by replace "foo.R" by your scripts
-## or we could combine all our functions into one script and add it to the source
-## please make sure the names of our functions are not duplicate 
+#### IMPORTANT: Please make sure you have installed 'dplyr' package ####
 
+#support scripts (functions)
 source('popInitial.R')
 source('evaluation.R')
 source('rankSelection.R')
@@ -14,11 +12,11 @@ source('breed.R')
 #...(list all the sources)
 
 #this is the primary function of the R package of this project
-#the output of this function should be ...(to be discussed)
+#the output of this function should be the selected predictors 
 
 select <- function(X, Y, popNum = 100, reg = 'lm', criterion = 'AIC', usingrank = TRUE,
-                   choose_rankBased = TRUE, pCurve = FALSE, cross_cutNum = 1, mutation_prob = 0.01,
-                   initial_zeroRate = 0.5, t_last = 15, t_max = 500){
+                   cross_cutNum = 1, mutation_prob = 0.01, mut_pCurve = FALSE,
+                   initial_zeroRate = 0.5, min_iter = 10, max_iter = 500){
   
   #X is treated as a data frame; Y is treated as a vector
   X <- as.data.frame(X)
@@ -34,38 +32,40 @@ select <- function(X, Y, popNum = 100, reg = 'lm', criterion = 'AIC', usingrank 
   currentGeneration <- firstGeneration
   
   #first evaluation
-  firstEval <- evaluation(X, Y, firstGeneration, popNum, reg, criterion)
+  df_current <- evaluation(X, Y, firstGeneration, popNum, reg, criterion)
   
-  #first rank
-  firstRank <- rankSelection(firstEval, usingrank)
-  
-  #test part (will be deleted later)
-  foo1 <- chooseChromosomes(firstRank, rankBased = choose_rankBased)
-  foo2 <- breed(foo1, cross_cutNum, mutation_prob)
-  
-  #iterations for the GA algorithm (and termination)
-  # This can go right after the evaluation as well.
-  t = 1
-  AIC_record <- c(min(firstEval$fitness))
+  #iterations for the GA
+  #this can go right after the evaluation as well
+  i <- 1
+  threshold <- 0
+  dif <- 0
+  AIC_record <- c(min(df_current$fitness))
   mutation_prob_backup <- mutation_prob
-  while(t <= t_last | (t > t_last & t <= t_max & approxEqual(min(df_current$fitness), mean(AIC_record[(t - t_last + 1):t])) = FALSE)){
-  # OR while(t <= t_last | (t > t_last & t <= t_max & converge(df_current, cvgRate_allele = 0.9, cvgRate_chrom = 0.9) = FALSE)
+  
+  while(i <= min_iter | (i > min_iter & i <= max_iter & dif > threshold)){
+ 
 	# curving the mutation probability
-	if(pCurve == TRUE)
-	{
-		mutation_prob <- min(mutation_prob_backup + 1/(t+1),1)
-	}
-    crtChosen <- choosing(firstRank)
-    nextGeneration <- breed(crtChosen)
-    df_current <- evaluation(nextGeneration)
-    t = t + 1
-	AIC_record <- c(AIC_record, min(df_current$fitness))
+	  if(mut_pCurve == TRUE){
+		  mutation_prob <- min(mutation_prob_backup + 1/(t+1),1)
+	  }
+    
+    if(i > min_iter){
+      dif <- abs(min(df_current$fitness) - mean(AIC_record[(i - min_iter + 1):i]))
+      threshold <- .Machine$double.eps * abs(min(df_current$fitness) + mean(AIC_record[(i - min_iter):i]))
+    }
+    
+    #implement GA   
+    crtRank <- rankSelection(df_current, usingrank)
+    crtChosen <- chooseChromosomes(crtRank, usingrank)
+    nextGeneration <- breed(crtChosen, cross_cutNum, mutation_prob)
+    df_current <- evaluation(X, Y, nextGeneration, popNum, reg, criterion)
+	  AIC_record <- c(AIC_record, min(df_current$fitness))
+	  i <- i + 1
   }
   
-  # the returned model
-  predictors <- df_current[1,1:(dim(df_current)[2]-1)]
-  # do we need to write out the regression function?
-  # selected_model <-
+  #return the selected predictors
+  predictors_tmp <- unlist(strsplit(df_current[1,1:(dim(df_current)[2]-1)], NULL))
+  predictors <- colnames(X[which(predictors_tmp == '1')])
 
-  return(selected_model)
+  return(predictors)
 }

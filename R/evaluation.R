@@ -8,6 +8,21 @@
 
 # The output dataframe is popNum by 2, with the first column consists of chromosomes and the second column consists of fitness values
 
+
+
+#' support function: evaluation()
+#'
+#' This function evaluate the fitness value of chromosomes. 
+#' @param X is the first parent.
+#' @param Y is the second parent.
+#' @param currentGeneration is the initialized generation and the selectively produced generations.
+#' @param popNum What is the population size of chromosomes? Default to 100.
+#' @param reg What is the regression type? Default to lm.
+#' @param criterion What is the objective criterion function? Default to AIC.
+#' @keywords evaluation
+#' @export
+#' @examples
+#' evaluation()
 evaluation <- function(X, Y, currentGeneration, popNum = 100, reg = 'lm', criterion = 'AIC'){
   
   # check if X and Y has NAs

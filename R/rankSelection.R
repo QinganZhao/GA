@@ -2,6 +2,16 @@
 #the input should be a database with one column corresponding to the , and one to the AIC values of each chromosome
 # 2 options are available: using the rank of the chromosome (default) or its fitness.
 
+
+#' support function: rankSelection()
+#'
+#' This function create selection probabilities of the chromosomes. 
+#' @param dfCurrent is your initial set of chromosomes.
+#' @param usingRank TRUE define selection probabilities using the rank and FALSE create selection probabilities proportionate to fitness. Defaults to TRUE. 
+#' @keywords rankSelection
+#' @export
+#' @examples
+#' rankSelection()
 rankSelection <- function(dfCurrent,usingRank = TRUE) {
   #number of chromosomes
   pop <- length(dfCurrent$chromosome)

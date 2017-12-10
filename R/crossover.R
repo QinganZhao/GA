@@ -1,6 +1,18 @@
 # this function takes for input 2 genes and creates 2 new genes from them
 # the last input is the  umber of cuts in allowed in the genes (default is 1)
 
+
+
+#' support function: crossover()
+#'
+#' This function takes for input 2 genes and creates 2 new genes from them. 
+#' @param ch1 is the first parent.
+#' @param ch2 is the second parent.
+#' @param nCuts How many cuts do you want for the crossover? Defaults to ONE.
+#' @keywords crossover
+#' @export
+#' @examples
+#' crossover()
 crossover <- function(ch1,ch2,nCuts = 1) {
   #length of the chromosome
   L <- length(ch1)

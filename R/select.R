@@ -1,4 +1,4 @@
-#### IMPORTANT: Please make sure you have installed 'dplyr' package ####
+#### IMPORTANT: Please make sure you have installed 'dplyr' packages ####
 
 ## Please make sure you have installed the following packages if you choose parallelization ##
 ## parallel, doParallel, & foreach
@@ -58,7 +58,7 @@ select <- function(X, Y, popNum = 100, reg = 'lm', criterion = 'AIC', useParalle
   i <- 1
   threshold <- 0
   dif <- 0
-  AIC_record <- c(min(df_current$fitness))
+  fit_record <- c(min(df_current$fitness))
   mutation_prob_backup <- mutation_prob
   
   while(i <= min_iter | (i > min_iter & i <= max_iter & dif > threshold)){
@@ -69,8 +69,8 @@ select <- function(X, Y, popNum = 100, reg = 'lm', criterion = 'AIC', useParalle
 	  }
     
     if(i > min_iter){
-      dif <- abs(min(df_current$fitness) - mean(AIC_record[(i - min_iter + 1):i]))
-      threshold <- .Machine$double.eps * abs(min(df_current$fitness) + mean(AIC_record[(i - min_iter):i]))
+      dif <- abs(min(df_current$fitness) - mean(fit_record[(i - min_iter + 1):i]))
+      threshold <- .Machine$double.eps * abs(min(df_current$fitness) + mean(fit_record[(i - min_iter):i]))
     }
     
     #implement GA   
@@ -84,13 +84,23 @@ select <- function(X, Y, popNum = 100, reg = 'lm', criterion = 'AIC', useParalle
       df_current <- evaluation(X, Y, nextGeneration, popNum, reg, criterion)
     }
       
-	  AIC_record <- c(AIC_record, min(df_current$fitness))
+	  fit_record <- c(fit_record, min(df_current$fitness))
 	  i <- i + 1
   }
   
-  #return the selected predictors
-  predictors_tmp <- unlist(strsplit(df_current[1,1:(dim(df_current)[2]-1)], NULL))
-  predictors <- colnames(X[which(predictors_tmp == '1')])
-
-  return(predictors)
+  #the selected predictors
+  predictor_tmp <- unlist(strsplit(df_current[1,1:(dim(df_current)[2]-1)], NULL))
+  predictor. <- as.matrix(X[which(predictor_tmp == '1')])
+  
+  #return the best model
+  if(reg == 'lm'){
+    bestModel <- lm(Y ~ predictor.)
+  }else{
+    bestModel <- glm(Y ~ predictor.)
+  }
+  
+  cat(' Selected predictors:', colnames(predictor.), '\n', 'Fitness value:', 
+      mean(fit_record),'\n')
+  
+  return(bestModel)
 }

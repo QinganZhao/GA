@@ -11,7 +11,7 @@ superEvaluation <- function(X, Y, currentGeneration, popNum = 100, reg = 'lm', c
   # column 1: ranking of chromosome, column 2: AIC fitness value
   df_current <- as.data.frame(matrix(nrow = popNum, ncol = 2))
   colnames(df_current) <- c("chromosome","fitness")
-  df_current$chromosome <- parApply(currentGeneration, 1, paste, collapse = '') # pasting chromosomes as strings
+  df_current$chromosome <- apply(currentGeneration, 1, paste, collapse = '') # pasting chromosomes as strings
   
   # default setting: regression reg = lm
   if(reg == 'lm'){

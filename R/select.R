@@ -1,4 +1,4 @@
-#### IMPORTANT: Please make sure you have installed 'dplyr' packages ####
+#### IMPORTANT: Please make sure you have installed 'dplyr' package ####
 
 ## Please make sure you have installed the following packages if you choose parallelization ##
 ## parallel, doParallel, & foreach

@@ -19,6 +19,29 @@ source('breed.R')
 #this is the primary function of the R package of this project
 #the output of this function should be the selected predictors 
 
+
+
+#' support function: select()
+#'
+#' This is the primary function of the R package of this project. 
+#' @param X is the first parent.
+#' @param Y is the second parent.
+#' @param popNum What is the population size of chromosomes? Default to 100.
+#' @param reg What is the regression type? Default to lm.
+#' @param criterion What is the objective criterion function? Default to AIC.
+#' @param useParallel Should it use parallelization? Default to FALSE.
+#' @param numCores How many cores should it use? Default to 4.
+#' @param usingRank TRUE define selection probabilities using the rank and FALSE create selection probabilities proportionate to fitness. Defaults to TRUE. 
+#' @param cross_cutNum How many cuts do you want for the crossover? Defaults to ONE.
+#' @param mutation_prob What is the probability of mutation? Defaults to 0.01.
+#' @param mut_pCurve Should it use curve for the probability of mutation (Starting with a big probability and decreasing to mutation_prob by the time)? Defaults to FALSE.
+#' @param initial_zeroRate What is the rate of zero among the genes of the first generation? Defaults to 0.5.
+#' @param min_iter What is the minimum number of iterations? Defaults to 10.
+#' @param max_iter What is the maximum number of iterations? Defaults to 500.
+#' @keywords select
+#' @export
+#' @examples
+#' select()
 select <- function(X, Y, popNum = 100, reg = 'lm', criterion = 'AIC', useParallel = FALSE,
                    numCores = 4, usingRank = TRUE, cross_cutNum = 1, mutation_prob = 0.01,
                    mut_pCurve = FALSE, initial_zeroRate = 0.5, min_iter = 10, max_iter = 500){

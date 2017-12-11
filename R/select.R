@@ -60,7 +60,7 @@ select <- function(X, Y, popNum = 100, reg = 'lm', criterion = 'AIC', useParalle
   Y <- as.vector(Y)
   
   if(dim(X)[1] != length(Y)){
-    stop("Invalid data: X and Y does not match")
+    stop("Invalid data: X and Y do not match")
   }
   
   #intialization: generate the first generation

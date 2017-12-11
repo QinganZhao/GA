@@ -5,16 +5,6 @@
 
 ########################################################################
 
-#support scripts (functions)
-source('popInitial.R')
-source('evaluation.R')
-source('rankSelection.R')
-source('choosing.R')
-source('crossover.R')
-source('mutation.R')
-source('breed.R')
-#source('foo.R')
-#...(list all the sources)
 
 #this is the primary function of the R package of this project
 #the output of this function should be the selected predictors 
@@ -45,6 +35,15 @@ source('breed.R')
 select <- function(X, Y, popNum = 100, reg = 'lm', criterion = 'AIC', useParallel = FALSE,
                    numCores = 4, usingRank = TRUE, cross_cutNum = 1, mutation_prob = 0.01,
                    mut_pCurve = FALSE, initial_zeroRate = 0.5, min_iter = 10, max_iter = 500){
+  
+  #support scripts (functions)
+  source('popInitial.R')
+  source('evaluation.R')
+  source('rankSelection.R')
+  source('choosing.R')
+  source('crossover.R')
+  source('mutation.R')
+  source('breed.R')
   
   #prepare for parallelization if the user choose it
   if(useParallel == TRUE){

@@ -3,6 +3,18 @@
 # this function put the crossover and mutation parts together
 # aslo aims to make sure the alignment of the data type in each part
 # applies the crossover() and mutation() functions to all chromosomes
+
+
+#' support function: breed()
+#'
+#' This function put the crossover and mutation parts together. Aslo aims to make sure the alignment of the data type in each part applies the crossover() and mutation() functions to all chromosomes.
+#' @param chromoSet is your initial set of chromosomes.
+#' @param cross_cutNum How many cuts do you want for the crossover? Defaults to 1.
+#' @param mutation_prob What is the probability of mutation? Defaults to 0.01.
+#' @keywords breed
+#' @export
+#' @examples
+#' breed()
 breed <- function(chromoSet, cross_cutNum = 1, mutation_prob = 0.01){
   #input:
   #   chromoSet: (data frame) 2 sets of chromosomes generated from the choosing() function

@@ -1,5 +1,20 @@
 # This function is the parallelization version of evaluation()
 
+
+
+#' support function: superEvaluation()
+#'
+#' This function is the parallelization version of evaluation(). 
+#' @param X is the first parent.
+#' @param Y is the second parent.
+#' @param currentGeneration is the initialized generation and the selectively produced generations.
+#' @param popNum What is the population size of chromosomes? Default to 100.
+#' @param reg What is the regression type? Default to lm.
+#' @param criterion What is the objective criterion function? Default to AIC.
+#' @keywords superEvaluation
+#' @export
+#' @examples
+#' superEvaluation()
 superEvaluation <- function(X, Y, currentGeneration, popNum = 100, reg = 'lm', criterion = 'AIC'){
   
   # check if X and Y has NAs

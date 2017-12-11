@@ -1,7 +1,23 @@
 
 
 test_that('finds errors', {
-  expect_error(select(c(1,2),3),"")
+  #dimension error
+  expect_error(select(c(1,2),3),"Invalid data: X and Y do not match")
+
+  #non numerical error
+  expect_error(select("a","b"),
+               "only defined on a data frame with all numeric variables")
+
+  #number of iterations
+  expect_error(select(1:3,1:3,min_iter = 5,max_iter = 2),"the maximum number of iteration
+         must be bigger than the minimum number of iteration")
+
+})
+
+test_that('warnings',{
+  #overfitting
+  expect_warning(select(1,2,popNum = 2,min_iter = 1,max_iter = 2),
+                 "There is an infinite AIC \\(might be overfitting\\)",all = FALSE)
 })
 
 test_that('finds best predictors', {

@@ -5,8 +5,8 @@
 #' support function: superEvaluation()
 #'
 #' This function is the parallelization version of evaluation(). 
-#' @param X is the first parent.
-#' @param Y is the second parent.
+#' @param X is a matrix containing the variables in the model.
+#' @param Y is a vector of observations to be used in the fitting process.
 #' @param currentGeneration is the initialized generation and the selectively produced generations.
 #' @param popNum What is the population size of chromosomes? Default to 100.
 #' @param reg What is the regression type? Default to lm.

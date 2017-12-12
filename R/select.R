@@ -62,6 +62,10 @@ select <- function(X, Y, popNum = 100, reg = 'lm', criterion = 'AIC', useParalle
   if(dim(X)[1] != length(Y)){
     stop("Invalid data: X and Y do not match")
   }
+  if (min_iter>max_iter) {
+    stop("the maximum number of iteration
+         must be bigger than the minimum number of iteration")
+  }
   
   #intialization: generate the first generation
   geneLength <- dim(X)[2]

@@ -41,6 +41,10 @@ evaluation <- function(X, Y, currentGeneration, popNum = 100, reg = 'lm', criter
     # criterion is AIC
     if(criterion == 'AIC'){
       for(i in 1:popNum){
+        if (sum(currentGeneration[i,])==0) {
+          j <- floor(runif(1,1,length(currentGeneration[i,])))
+          currentGeneration[i,1] <- 1
+        }
         df_current$fitness[i] <- AIC(lm(Y~as.matrix(X[,which(currentGeneration[i,] == 1, arr.ind = T)])))
         if(is.infinite(df_current$fitness[i])){
           warning("There is an infinite AIC (might be overfitting).")

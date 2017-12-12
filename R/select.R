@@ -14,8 +14,8 @@
 #' support function: select()
 #'
 #' This is the primary function of the R package of this project. 
-#' @param X is the first parent.
-#' @param Y is the second parent.
+#' @param X is a matrix containing the variables in the model.
+#' @param Y is a vector of observations to be used in the fitting process.
 #' @param popNum What is the population size of chromosomes? Default to 100.
 #' @param reg What is the regression type? Default to lm.
 #' @param criterion What is the objective criterion function? Default to AIC.

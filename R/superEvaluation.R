@@ -22,6 +22,12 @@ superEvaluation <- function(X, Y, currentGeneration, popNum = 100, reg = 'lm', c
     warning("There are NAs in X or Y matrix. The default setting of lm and glm function uses 'na.omit' that omits the observations with NAs.")
   }
   
+  #if a population is identically 0, we force a 'mutation' by change a random gene to 1
+  #since this case cannot pass regression
+  currentGeneration[which(apply(currentGeneration, 1, sum) == 0), 
+                    sample(1:ncol(currentGeneration), 1)] <- 1
+  
+  
   # construct the outcome dataframe: popNum by 2
   # column 1: ranking of chromosome, column 2: AIC fitness value
   df_current <- as.data.frame(matrix(nrow = popNum, ncol = 2))

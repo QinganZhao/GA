@@ -14,7 +14,7 @@
 #' rankSelection()
 rankSelection <- function(dfCurrent,usingRank = TRUE) {
   #number of chromosomes
-  pop <- length(dfCurrent$chromosome)
+  pop <- length(dfCurrent[[1]])
   
   if (is.na(dfCurrent[[1]][sample(1:pop, size = 1)])) {
     stop("The are N/A values in the dataframe")
@@ -25,8 +25,8 @@ rankSelection <- function(dfCurrent,usingRank = TRUE) {
   colnames(df) <- c("chromosome","probability")
   
   #order the chromosomes by fitness
-  reorder <- order(dfCurrent$fitness, decreasing = FALSE)
-  df$chromosome <- dfCurrent$chromosome[reorder]
+  reorder <- order(dfCurrent[[2]], decreasing = FALSE)
+  df$chromosome <- dfCurrent[[1]][reorder]
   
   #default case: define selection probabilities using the rank
   if (usingRank) {
@@ -39,7 +39,7 @@ rankSelection <- function(dfCurrent,usingRank = TRUE) {
   } else {
 #alternate case: create selection probabilities proportionate to fitness
 #excludes the less fit from the selection
-    tmp <- dfCurrent$fitness[reorder]
+    tmp <- dfCurrent[[2]][reorder]
     if (sum(is.infinite(tmp))>0) { stop("some of the fitness values are infinite, choose usingRank=TRUE")}
     tmp <- -(tmp - max(tmp))
     sumFit = sum(tmp)

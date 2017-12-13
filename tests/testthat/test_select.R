@@ -27,7 +27,7 @@ test_that('finds best predictors in spite of NAs', {
   names(S$coefficients) <- NULL
   correct <- rep(NA,length(S$coefficients))
   correct[1:2] <- c(0,1)
-  expect_true(all.equal(S$coefficients,correct,tolerance = 10^-12))
+  expect_true(all.equal(S$coefficients,correct,tolerance = 10^-6))
 })
 
 test_that('finds best predictors with default', {
@@ -39,7 +39,7 @@ test_that('finds best predictors with default', {
   names(S$coefficients) <- NULL
   correct <- rep(0,length(S$coefficients))
   correct[2] <- 1
-  expect_true(all.equal(S$coefficients,correct,tolerance = 10^-12))
+  expect_true(all.equal(S$coefficients,correct,tolerance = 10^-6))
 
   #less obvious regression
   X <- data.frame(matrix(ncol = 20, nrow = 20))
@@ -48,7 +48,7 @@ test_that('finds best predictors with default', {
   names(S$coefficients) <- NULL
   correct <- rep(0,length(S$coefficients))
   correct[1:4] <- c(1,2,-3,0.0001)
-  expect_true(all.equal(S$coefficients,correct,tolerance = 10^-12))
+  expect_true(all.equal(S$coefficients,correct,tolerance = 10^-6))
 })
 
 test_that('finds best predictors without using rank', {
@@ -58,7 +58,7 @@ test_that('finds best predictors without using rank', {
   names(S$coefficients) <- NULL
   correct <- rep(0,length(S$coefficients))
   correct[1:4] <- c(1,2,-3,0.0001)
-  expect_true(all.equal(S$coefficients,correct,tolerance = 10^-12))
+  expect_true(all.equal(S$coefficients,correct,tolerance = 10^-6))
 })
 
 test_that('finds best predictors with parallelization', {
@@ -68,7 +68,7 @@ test_that('finds best predictors with parallelization', {
   names(S$coefficients) <- NULL
   correct <- rep(0,length(S$coefficients))
   correct[1:4] <- c(1,2,-3,0.0001)
-  expect_true(all.equal(S$coefficients,correct,tolerance = 10^-12))
+  expect_true(all.equal(S$coefficients,correct,tolerance = 10^-6))
 })
 
 test_that('finds best predictors with glm', {
@@ -78,7 +78,7 @@ test_that('finds best predictors with glm', {
   names(S$coefficients) <- NULL
   correct <- rep(0,length(S$coefficients))
   correct[1:4] <- c(1,2,-3,0.0001)
-  expect_true(all.equal(S$coefficients,correct,tolerance = 10^-12))
+  expect_true(all.equal(S$coefficients,correct,tolerance = 10^-6))
 })
 
 

@@ -1,8 +1,8 @@
 Package: GA
-Title: What the Package Does (one line, title case)
+Title: Genetic Algorithm
 Version: 0.0.0.9000
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Authors@R: person("Côme", "de Lassus Saint Geniès"), person("Arman", "jabbari"), person("Qingan", "Zhao"), person("Mia", "Zhong")
+Description: An R package for variable selection in regression problems based on genetic algorithm
 Depends: R (>= 3.4.1)
 License: What license is it under?
 Encoding: UTF-8

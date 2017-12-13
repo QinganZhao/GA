@@ -20,8 +20,6 @@
 chooseChromosomes <- function(df_init, rankBased = TRUE) 
 {
   
-  library(dplyr)
-  
   #number of chromosomes
   if (length(df_init$chromosome)%%2 == 1)
   {
@@ -31,13 +29,13 @@ chooseChromosomes <- function(df_init, rankBased = TRUE)
   
   
   #sampling chromosomes
-  df1<-sample_n(df_init, size = pop, weight = df_init$probability, replace = TRUE)
+  df1<-dplyr::sample_n(df_init, size = pop, weight = df_init$probability, replace = TRUE)
   if (rankBased == TRUE)
   {
-    df2<-sample_n(df_init, size = pop, weight = df_init$probability, replace = TRUE)
+    df2<-dplyr::sample_n(df_init, size = pop, weight = df_init$probability, replace = TRUE)
   }else
   {
-    df2<-sample_n(df_init, size = pop, replace = TRUE)
+    df2<-dplyr::sample_n(df_init, size = pop, replace = TRUE)
   }
   
   #create the output dataframe

@@ -1,6 +1,6 @@
-context("Test the primary function: select()")
+context("Test the primary function: select() \n")
 
-context("Test the input")
+context("Test the input \n")
 
 test_that('finds errors', {
   #dimension error
@@ -15,7 +15,7 @@ test_that('finds errors', {
 
 })
 
-context("Test the warnings in the case of negative infinite AIC")
+context("Test the warnings in the case of negative infinite AIC \n")
 
 test_that('warnings',{
   #overfitting
@@ -23,7 +23,7 @@ test_that('warnings',{
                  "There is an infinite AIC \\(might be overfitting\\)",all = FALSE)
 })
 
-context("Test the case that there are NAs in the input")
+context("Test the case that there are NAs in the input \n")
 
 test_that('finds best predictors in spite of NAs', {
   X <- data.frame(matrix(ncol = 20, nrow = 20))
@@ -36,7 +36,7 @@ test_that('finds best predictors in spite of NAs', {
   expect_true(all.equal(S$coefficients,correct,tolerance = 10^-12))
 })
 
-context("Test if select() can find best predictors with default using simulated data")
+context("Test if select() can find best predictors with default using simulated data \n")
 
 test_that('finds best predictors with default', {
   #obvious dataframe
@@ -59,7 +59,7 @@ test_that('finds best predictors with default', {
   expect_true(all.equal(S$coefficients,correct,tolerance = 10^-12))
 })
 
-context("Test if select() can find best predictors without using rank using simulated data")
+context("Test if select() can find best predictors without using rank using simulated data \n")
 
 test_that('finds best predictors without using rank', {
   X <- data.frame(matrix(ncol = 20, nrow = 20))
@@ -71,7 +71,7 @@ test_that('finds best predictors without using rank', {
   expect_true(all.equal(S$coefficients,correct,tolerance = 10^-12))
 })
 
-context("Test using select() with parallelization")
+context("Test using select() with parallelization \n")
 
 test_that('finds best predictors with parallelization', {
   X <- data.frame(matrix(ncol = 20, nrow = 20))
@@ -83,7 +83,7 @@ test_that('finds best predictors with parallelization', {
   expect_true(all.equal(S$coefficients,correct,tolerance = 10^-12))
 })
 
-context("Test if select() can find best predictors based on glm using simulated data")
+context("Test if select() can find best predictors based on glm using simulated data \n")
 
 test_that('finds best predictors with glm', {
   X <- data.frame(matrix(ncol = 20, nrow = 20))
@@ -95,7 +95,7 @@ test_that('finds best predictors with glm', {
   expect_true(all.equal(S$coefficients,correct,tolerance = 10^-12))
 })
 
-context('REAL DATA: Test if most strong predictors in a real-world dataset can be selected')
+context('REAL DATA: Test if most strong predictors in a real-world dataset can be selected \n')
 
 test_that('test if most strong predictors in a real-world dataset can be selected', {
   download.file('https://github.com/QinganZhao/Data-Science/blob/master/database/JGSSdata?raw=true', 'jp')

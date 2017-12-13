@@ -2,7 +2,7 @@
 
 # GA
 ### An R package for variable selection in regression problems based on genetic algorithm
-[C&#244;me de Lassus Saint Genis](https://github.com/ComedeLassus)
+[C&#244;me de Lassus Saint Geni&#232;s](https://github.com/ComedeLassus)
 
 [Arman Jabbari](https://github.com/arm4nn)
 

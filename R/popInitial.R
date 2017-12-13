@@ -39,10 +39,6 @@ popInitial <- function(popNum = 100, geneLength, zeroRate = 0){
   firstGeneration <- matrix(sample(c(rep(0, zeroNum), rep(1, oneNum)), geneNum), 
                             nrow = popNum, ncol = geneLength)
   
-  #if a population is identically 0, we force a 'mutation' by change a random gene to 1
-  #since this case cannot pass evaluation()
-  firstGeneration[which(apply(firstGeneration, 1, sum) == 0), 
-                    sample(1:ncol(firstGeneration), 1)] <- 1
   
   return(firstGeneration)
 }

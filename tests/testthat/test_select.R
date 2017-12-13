@@ -5,8 +5,7 @@ test_that('finds errors', {
   expect_error(select(c(1,2),3),"Invalid data: X and Y do not match")
 
   #non numerical error
-  expect_error(select("a","b"),
-               "only defined on a data frame with all numeric variables")
+  expect_error(select("a","b"),)
 
   #number of iterations
   expect_error(select(1:3,1:3,min_iter = 5,max_iter = 2),"the maximum number of iteration
@@ -20,8 +19,7 @@ test_that('warnings',{
                  "There is an infinite AIC \\(might be overfitting\\)",all = FALSE)
 })
 
-test_that('finds best predictors', {
-  #values with NA
+test_that('finds best predictors in spite of NAs', {
   X <- data.frame(matrix(ncol = 20, nrow = 20))
   X[,1] <- 1:20
   for (i in 2:20){X[,i]<- rep(1,20)}
@@ -30,7 +28,9 @@ test_that('finds best predictors', {
   correct <- rep(NA,length(S$coefficients))
   correct[1:2] <- c(0,1)
   expect_true(all.equal(S$coefficients,correct,tolerance = 10^-12))
+})
 
+test_that('finds best predictors with default', {
   #obvious dataframe
   X <- data.frame(matrix(ncol = 20, nrow = 20))
   X[,1] <- 1:20
@@ -49,22 +49,31 @@ test_that('finds best predictors', {
   correct <- rep(0,length(S$coefficients))
   correct[1:4] <- c(1,2,-3,0.0001)
   expect_true(all.equal(S$coefficients,correct,tolerance = 10^-12))
+})
 
-  #without using rank
+test_that('finds best predictors without using rank', {
+  X <- data.frame(matrix(ncol = 20, nrow = 20))
+  for (i in 1:20){X[,i]<- rep(i,20)+runif(20,0,1)}
   S <- select(X,1+2*X[,1]-3*X[,2]+0.0001*X[,3],usingRank = FALSE)
   names(S$coefficients) <- NULL
   correct <- rep(0,length(S$coefficients))
   correct[1:4] <- c(1,2,-3,0.0001)
   expect_true(all.equal(S$coefficients,correct,tolerance = 10^-12))
+})
 
-  #using parallelization
+test_that('finds best predictors with parallelization', {
+  X <- data.frame(matrix(ncol = 20, nrow = 20))
+  for (i in 1:20){X[,i]<- rep(i,20)+runif(20,0,1)}
   S <- select(X,1+2*X[,1]-3*X[,2]+0.0001*X[,3],useParallel = TRUE)
   names(S$coefficients) <- NULL
   correct <- rep(0,length(S$coefficients))
   correct[1:4] <- c(1,2,-3,0.0001)
   expect_true(all.equal(S$coefficients,correct,tolerance = 10^-12))
+})
 
-  #using glm
+test_that('finds best predictors with glm', {
+  X <- data.frame(matrix(ncol = 20, nrow = 20))
+  for (i in 1:20){X[,i]<- rep(i,20)+runif(20,0,1)}
   S <- select(X,1+2*X[,1]-3*X[,2]+0.0001*X[,3],reg = 'glm')
   names(S$coefficients) <- NULL
   correct <- rep(0,length(S$coefficients))

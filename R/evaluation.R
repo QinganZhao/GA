@@ -29,6 +29,10 @@ evaluation <- function(X, Y, currentGeneration, popNum = 100, reg = 'lm', criter
   if(is.na(sum(X)) | is.na(sum(Y))){
     warning("There are NAs in X or Y matrix. The default setting of lm and glm function uses 'na.omit' that omits the observations with NAs.")
   }
+  #if a population is identically 0, we force a 'mutation' by change a random gene to 1
+  #since this case cannot pass regression
+  currentGeneration[which(apply(currentGeneration, 1, sum) == 0), 
+                  sample(1:ncol(currentGeneration), 1)] <- 1
   
   # construct the outcome dataframe: popNum by 2
   # column 1: ranking of chromosome, column 2: AIC fitness value
@@ -41,10 +45,6 @@ evaluation <- function(X, Y, currentGeneration, popNum = 100, reg = 'lm', criter
     # criterion is AIC
     if(criterion == 'AIC'){
       for(i in 1:popNum){
-        if (sum(currentGeneration[i,])==0) {
-          j <- floor(runif(1,1,length(currentGeneration[i,])))
-          currentGeneration[i,1] <- 1
-        }
         df_current$fitness[i] <- AIC(lm(Y~as.matrix(X[,which(currentGeneration[i,] == 1, arr.ind = T)])))
         if(is.infinite(df_current$fitness[i])){
           warning("There is an infinite AIC (might be overfitting).")

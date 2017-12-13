@@ -45,6 +45,15 @@ test_that('function superEvaluation gives correct result',{
   expect_true(all.equal(as.vector(E$fitness),expected,tolerance = 10^-3))
 })
 
+test_that('function crossover gives correct results',{
+  #simple test for a non-random crossing
+  expect_equal(crossover(c(0,0),c(1,1)),list(c(0,1),c(1,0)))
+
+  #whatever the length of the chromosome should not change
+  a <- floor(2*runif(10,0,1))
+  b <- floor(2*runif(10,0,1))
+  expect_equal(length(crossover(a,b,nCuts = 5)[[1]]),10)
+})
 
 test_that('functions breed and popInitial behave correctly',{
   #two identical generations should be unchanged if no mutation
@@ -66,5 +75,6 @@ test_that('functions breed and popInitial behave correctly',{
 
 test_that('function rankSelection behaves correctly',{
   df <- data.frame(matrix(runif(10,0,10),ncol = 2))
+  colnames(df)<- c('chromosome','fitness')
   expect_equal(rankSelection(df)$probability,c(1/3,4/15,1/5,2/15,1/15))
 })

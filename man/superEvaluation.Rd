@@ -8,9 +8,9 @@ superEvaluation(X, Y, currentGeneration, popNum = 100, reg = "lm",
   criterion = "AIC")
 }
 \arguments{
-\item{X}{is the first parent.}
+\item{X}{is a matrix containing the variables in the model.}
 
-\item{Y}{is the second parent.}
+\item{Y}{is a vector of observations to be used in the fitting process.}
 
 \item{currentGeneration}{is the initialized generation and the selectively produced generations.}
 

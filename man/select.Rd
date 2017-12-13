@@ -10,9 +10,9 @@ select(X, Y, popNum = 100, reg = "lm", criterion = "AIC",
   min_iter = 10, max_iter = 500)
 }
 \arguments{
-\item{X}{is the first parent.}
+\item{X}{is a matrix containing the variables in the model.}
 
-\item{Y}{is the second parent.}
+\item{Y}{is a vector of observations to be used in the fitting process.}
 
 \item{popNum}{What is the population size of chromosomes? Default to 100.}
 

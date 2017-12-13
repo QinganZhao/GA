@@ -128,8 +128,5 @@ select <- function(X, Y, popNum = 100, reg = 'lm', criterion = 'AIC', useParalle
   cat(' Selected predictors:', colnames(predictor.), '\n', 'Fitness value:', 
       mean(fit_record),'\n')
   
-  #make sure select() is not masked by another function in dplyr package
-  select <<- GA::select
-  
   return(bestModel)
 }

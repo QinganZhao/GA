@@ -30,7 +30,7 @@ Please make sure you have installed [testthat](https://www.r-pkg.org/pkg/testtha
 #### Develop the package
 The package is welcomed to be refined. Please push the updated package to Github and reinstall it before using.
 
-To update the help page, please run the following code after changing:
+To update the help pages, please run the following code after changing:
 > devtools::document()
 
 

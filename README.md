@@ -28,7 +28,7 @@ Please make sure you have installed [testthat](https://www.r-pkg.org/pkg/testtha
 > testthat::test_package('GA')<br />
 
 #### Develop the package
-The package is welcomed to be refined. Please push the updated package to github and reinstall it before using.
+The package is welcomed to be refined. Please push the updated package to Github and reinstall it before using.
 
 To update the help page, please run the following code after changing:
 > devtools::document()

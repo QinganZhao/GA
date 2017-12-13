@@ -14,7 +14,7 @@
 
 <div align=left>
 
-**IMPORTANT**: Since some parts in this package were developed with the help of the function *dplyr::sample_n()*, please make sure you have installed [dplyr](https://www.r-pkg.org/pkg/dplyr) package. Also, please make sure you have installed [devtools](https://www.r-pkg.org/pkg/devtools) so that the package can be imported via Github.
+**IMPORTANT**: Since some parts in this package were developed with the help of the function *dplyr::sample_n()*, please make sure you have installed [dplyr](https://www.r-pkg.org/pkg/dplyr) package. Also, please make sure you have installed [devtools](https://www.r-pkg.org/pkg/devtools) package so that GA can be imported via Github.
 
 If you would like to use the parallelization technique in this package, please also make sure you have installed the following packages: [parallel](http://stat.ethz.ch/R-manual/R-devel/library/parallel/doc/parallel.pdf), [doParallel](https://www.r-pkg.org/pkg/doParallel), and [foreach](https://www.r-pkg.org/pkg/foreach).
 <br />

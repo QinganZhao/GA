@@ -1,7 +1,10 @@
 Package: GA
 Title: Genetic Algorithm
 Version: 0.0.0.9000
-Authors@R: person("Côme", "de Lassus Saint Geniès"), person("Arman", "jabbari"), person("Qingan", "Zhao"), person("Mia", "Zhong")
+Authors@R: person("Côme", "de Lassus Saint Geniès"), 
+Authors@R: person("Arman", "jabbari"), 
+Authors@R: person("Qingan", "Zhao"), 
+Authors@R: person("Mia", "Zhong")
 Description: An R package for variable selection in regression problems based on genetic algorithm
 Depends: R (>= 3.4.1)
 License: What license is it under?

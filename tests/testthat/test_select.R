@@ -108,7 +108,7 @@ test_that('test if most strong predictors in a real-world dataset can be selecte
                "ST5LIFEY", "TP5LOC15", "PPLSTSCH")]
   Xjp <- as.matrix(Xjp)
   StrongPredictors <- c("predictor.SEXA", "predictor.AGEB", "predictor.MARC", 
-                        "predictor.XJOBIWK", "predictor.XXLSTSCH", "predictor.ST5LIFEY",
+                        "predictor.XJOBIWK", "predictor.XXLSTSCH", "predictor.JOINUNI",
                         "predictor.TP5LOC15", "predictor.PPLSTSCH")
   lmSelect <- select(Xjp, Yjp, reg = 'lm')
   glmSelect <- select(Xjp, Yjp, reg = 'glm')

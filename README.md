@@ -20,7 +20,7 @@ If you would like to use the parallelization technique in this package, please a
 <br />
 #### Use the package
 Please run the following code in R:
-> devtools::install_github('arm4nn/GA') 
+> devtools::install_github('arm4nn/GA')<br>
 > library(GA)<br />
 
 #### Run the tests in the package

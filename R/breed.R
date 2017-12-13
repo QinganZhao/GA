@@ -29,8 +29,8 @@ breed <- function(chromoSet, cross_cutNum = 1, mutation_prob = 0.01){
     stop("Mutation probability must be within [0,1].")
   }
   
-  source("crossover.R")
-  source("mutation.R")
+  #source("crossover.R")
+  #source("mutation.R")
   
   chromo_mat <- as.matrix(chromoSet)  
   pop_len <- length(chromo_mat) / 2  #the population number of each group (set)

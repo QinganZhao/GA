@@ -4,8 +4,6 @@
 # 2 options are available: choosing both chromosome based on their rank (rankBased = TRUE) or choosing one of them uniformly.
 # Output is a dataframe with two columns. Both column corresponding to chromosomes. Each row of this data frame shows both parents.
 
-#LIBRARIES:
-library(dplyr)
 
 
 #FUNCTIONS:
@@ -21,6 +19,9 @@ library(dplyr)
 #' chooseChromosomes()
 chooseChromosomes <- function(df_init, rankBased = TRUE) 
 {
+  
+  library(dplyr)
+  
   #number of chromosomes
   if (length(df_init$chromosome)%%2 == 1)
   {

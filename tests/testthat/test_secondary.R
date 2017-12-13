@@ -21,6 +21,9 @@ test_that('function evaluation gives correct result',{
 })
 
 test_that('function superEvaluation gives correct result',{
+  library(parallel)
+  library(doParallel)
+  library(foreach)
   #very simple data
   X <- matrix(c(1,2,3,4),ncol = 2)
   Y <- c(5,6)

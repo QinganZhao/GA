@@ -37,13 +37,13 @@ select <- function(X, Y, popNum = 100, reg = 'lm', criterion = 'AIC', useParalle
                    mut_pCurve = FALSE, initial_zeroRate = 0.5, min_iter = 10, max_iter = 500){
   
   #support scripts (functions)
-  source('popInitial.R')
-  source('evaluation.R')
-  source('rankSelection.R')
-  source('choosing.R')
-  source('crossover.R')
-  source('mutation.R')
-  source('breed.R')
+  #source('popInitial.R')
+  #source('evaluation.R')
+  #source('rankSelection.R')
+  #source('choosing.R')
+  #source('crossover.R')
+  #source('mutation.R')
+  #source('breed.R')
   
   #prepare for parallelization if the user choose it
   if(useParallel == TRUE){
@@ -52,7 +52,7 @@ select <- function(X, Y, popNum = 100, reg = 'lm', criterion = 'AIC', useParalle
     library(foreach)
     nCores <- numCores
     registerDoParallel(nCores)
-    source('superEvaluation.R')
+    #source('superEvaluation.R')
   }
   
   #X is treated as a data frame; Y is treated as a vector
@@ -127,6 +127,9 @@ select <- function(X, Y, popNum = 100, reg = 'lm', criterion = 'AIC', useParalle
   
   cat(' Selected predictors:', colnames(predictor.), '\n', 'Fitness value:', 
       mean(fit_record),'\n')
+  
+  #make sure select() is not masked by another function in dplyr package
+  select <<- GA::select
   
   return(bestModel)
 }

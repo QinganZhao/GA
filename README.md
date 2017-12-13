@@ -21,7 +21,7 @@ If you would like to use the parallelization technique in this package, please a
 #### Use the package
 Please run the following code in R:
 ``` r
-devtools::install_github('arm4nn/GA')<br>
+devtools::install_github('arm4nn/GA')
 library(GA)
 ```
 
@@ -36,5 +36,5 @@ The package is welcomed to be refined. Please push the updated package to Github
 
 To update the help pages, please run the following code after changing:
 ``` r
-> devtools::document()
+devtools::document()
 ```

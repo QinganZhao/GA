@@ -1,3 +1,5 @@
+context("Test evaluation()")
+
 test_that('function evaluation gives correct result',{
   #very simple data
   X <- matrix(c(1,2,3,4),ncol = 2)
@@ -19,6 +21,8 @@ test_that('function evaluation gives correct result',{
   E <- evaluation(X,Y,Gen,6)
   expect_true(all.equal(E$fitness,expected,tolerance = 10^-3))
 })
+
+context("Test superEvaluation()")
 
 test_that('function superEvaluation gives correct result',{
   library(parallel)
@@ -48,6 +52,8 @@ test_that('function superEvaluation gives correct result',{
   expect_true(all.equal(as.vector(E$fitness),expected,tolerance = 10^-3))
 })
 
+context("Test crossover()")
+
 test_that('function crossover gives correct results',{
   #simple test for a non-random crossing
   expect_equal(crossover(c(0,0),c(1,1)),list(c(0,1),c(1,0)))
@@ -57,6 +63,8 @@ test_that('function crossover gives correct results',{
   b <- floor(2*runif(10,0,1))
   expect_equal(length(crossover(a,b,nCuts = 5)[[1]]),10)
 })
+
+context("Test breed()")
 
 test_that('functions breed and popInitial behave correctly',{
   #two identical generations should be unchanged if no mutation
@@ -75,6 +83,8 @@ test_that('functions breed and popInitial behave correctly',{
   df[2] <- apply(ch2, 1, paste, collapse = '')
   expect_equal(sum(breed(df,mutation_prob = 0)),130)
 })
+
+context("Test rankSelection()")
 
 test_that('function rankSelection behaves correctly',{
   df <- data.frame(matrix(runif(10,0,10),ncol = 2))

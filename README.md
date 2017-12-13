@@ -21,12 +21,12 @@ If you would like to use the parallelization technique in this package, please a
 #### Use the package
 Please run the following code in R:
 > devtools::install_github('arm4nn/GA') 
-> library(GA)
-<br>
+> library(GA)<br>
+
 #### Run the tests in the package
 Please make sure you have installed [testthat](https://www.r-pkg.org/pkg/testthat) package, and run the following code in R:
-> testthat::test_package(’GA’)
-<br>
+> testthat::test_package(’GA’)<br>
+
 #### Develop the package
 The package is welcomed to be refined. Please push the updated package to github and reinstall it before using.
 

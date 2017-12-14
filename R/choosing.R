@@ -11,8 +11,8 @@
 #' support function: chooseChromosomes()
 #'
 #' This function put choose/select the chromosomes for generating the next generation. 
-#' @param df_init is your initial set of chromosomes.
-#' @param rankBased TRUE is choosing both parent based on their fitness and FALSE is choosing one parent based on fitness and the other one randomly. Defaults to TRUE.
+#' @param df_init data frame; ranked chromosomes
+#' @param rankBased logic; TRUE is choosing both parent based on their fitness and FALSE is choosing one parent based on fitness and the other one randomly; defaults to TRUE;
 #' @keywords chooseChromosomes
 #' @export
 #' @examples

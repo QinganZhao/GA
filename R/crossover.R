@@ -6,9 +6,9 @@
 #' support function: crossover()
 #'
 #' This function takes for input 2 genes and creates 2 new genes from them. 
-#' @param ch1 is the first parent.
-#' @param ch2 is the second parent.
-#' @param nCuts How many cuts do you want for the crossover? Defaults to ONE.
+#' @param ch1 string; the first parent
+#' @param ch2 string; the second parent
+#' @param nCuts integer; How many cuts do you want for the crossover? Defaults to 1
 #' @keywords crossover
 #' @export
 #' @examples

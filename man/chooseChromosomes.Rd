@@ -7,9 +7,9 @@
 chooseChromosomes(df_init, rankBased = TRUE)
 }
 \arguments{
-\item{df_init}{is your initial set of chromosomes.}
+\item{df_init}{data frame; ranked chromosomes}
 
-\item{rankBased}{TRUE is choosing both parent based on their fitness and FALSE is choosing one parent based on fitness and the other one randomly. Defaults to TRUE.}
+\item{rankBased}{logic; TRUE is choosing both parent based on their fitness and FALSE is choosing one parent based on fitness and the other one randomly; defaults to TRUE;}
 }
 \description{
 This function put choose/select the chromosomes for generating the next generation.

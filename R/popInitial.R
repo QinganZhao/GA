@@ -6,14 +6,14 @@
 #' support function: popInitial()
 #'
 #' This function intializes the population. 
-#' @param popNum What is the population size of chromosomes? Default to 100.
-#' @param geneLength What is the gene length (positive integer)? 
-#' @param zeroRate What is the rate of zero among the genes of the first generation? Defaults to 0.
+#' @param popNum integer; What is the population size of chromosomes? Default to 100
+#' @param geneLength integer; number of genes (0/1) on a chromosome
+#' @param zeroRate numeric; below or equal to 1 and above or equal to 0; What is the rate of zero among the genes of the first generation? Defaults to 0.5
 #' @keywords popInitial
 #' @export
 #' @examples
 #' popInitial()
-popInitial <- function(popNum = 100, geneLength, zeroRate = 0){
+popInitial <- function(popNum = 100, geneLength, zeroRate = 0.5){
   #input: 
   #   popNum: population number (positive integer)
   #   geneLength: gene length (positive integer)

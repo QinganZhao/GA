@@ -4,14 +4,14 @@
 \alias{popInitial}
 \title{support function: popInitial()}
 \usage{
-popInitial(popNum = 100, geneLength, zeroRate = 0)
+popInitial(popNum = 100, geneLength, zeroRate = 0.5)
 }
 \arguments{
-\item{popNum}{What is the population size of chromosomes? Default to 100.}
+\item{popNum}{integer; What is the population size of chromosomes? Default to 100}
 
-\item{geneLength}{What is the gene length (positive integer)?}
+\item{geneLength}{integer; number of genes (0/1) on a chromosome}
 
-\item{zeroRate}{What is the rate of zero among the genes of the first generation? Defaults to 0.}
+\item{zeroRate}{numeric; below or equal to 1 and above or equal to 0; What is the rate of zero among the genes of the first generation? Defaults to 0.5}
 }
 \description{
 This function intializes the population.

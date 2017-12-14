@@ -12,8 +12,8 @@
 #' support function: mutation()
 #'
 #' This function mutate the chromosomes. 
-#' @param chromosome is your initial set of chromosomes
-#' @param probability What is the probability of mutation? Defaults to 0.01.
+#' @param chromosome vector; one chromosome with genes 0/1
+#' @param probability numeric; below or equal to 1 and above or equal to 0; What is the probability of mutation? Defaults to 0.01
 #' @keywords mutation
 #' @export
 #' @examples

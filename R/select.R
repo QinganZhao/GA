@@ -14,20 +14,20 @@
 #' support function: select()
 #'
 #' This is the primary function of the R package of this project. 
-#' @param X is a matrix containing the variables in the model.
-#' @param Y is a vector of observations to be used in the fitting process.
-#' @param popNum What is the population size of chromosomes? Default to 100.
-#' @param reg What is the regression type? Default to lm.
-#' @param criterion What is the objective criterion function? Default to AIC.
-#' @param useParallel Should it use parallelization? Default to FALSE.
-#' @param numCores How many cores should it use? Default to 4.
-#' @param usingRank TRUE define selection probabilities using the rank and FALSE create selection probabilities proportionate to fitness. Defaults to TRUE. 
-#' @param cross_cutNum How many cuts do you want for the crossover? Defaults to ONE.
-#' @param mutation_prob What is the probability of mutation? Defaults to 0.01.
-#' @param mut_pCurve Should it use curve for the probability of mutation (Starting with a big probability and decreasing to mutation_prob by the time)? Defaults to FALSE.
-#' @param initial_zeroRate What is the rate of zero among the genes of the first generation? Defaults to 0.5.
-#' @param min_iter What is the minimum number of iterations? Defaults to 10.
-#' @param max_iter What is the maximum number of iterations? Defaults to 500.
+#' @param X matrix/dataframe; predictors
+#' @param Y vector/matrix/dataframe; observations to be used in the fitting process
+#' @param popNum integer; What is the population size of chromosomes? Default to 100
+#' @param reg string; 'lm'/'glm; What is the regression type? Default to 'lm'
+#' @param criterion string; function name; What is the objective criterion function? Default to 'AIC'
+#' @param useParallel logic; Should it use parallelization? Default to FALSE
+#' @param numCores integer; How many cores should it use? Default to 4
+#' @param usingRank logic; TRUE define selection probabilities using the rank and FALSE create selection probabilities proportionate to fitness; defaults to TRUE
+#' @param cross_cutNum integer; How many cuts do you want for the crossover? Defaults to 1
+#' @param mutation_prob numeric; below or equal to 1 and above or equal to 0; What is the probability of mutation? Defaults to 0.01
+#' @param mut_pCurve logic; Should it use curve for the probability of mutation (Starting with a big probability and decreasing to mutation_prob by the time)? Defaults to FALSE.
+#' @param initial_zeroRate numeric; below or equal to 1 and above or equal to 0; What is the rate of zero among the genes of the first generation? Defaults to 0.5
+#' @param min_iter integer; What is the minimum number of iterations? Defaults to 10.
+#' @param max_iter integer; What is the maximum number of iterations? Defaults to 500.
 #' @keywords select
 #' @export
 #' @examples

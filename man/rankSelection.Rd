@@ -7,9 +7,9 @@
 rankSelection(dfCurrent, usingRank = TRUE)
 }
 \arguments{
-\item{dfCurrent}{is your initial set of chromosomes.}
+\item{dfCurrent}{dataframe; one column corresponding to the genes (string), and one to the AIC values of each chromosome}
 
-\item{usingRank}{TRUE define selection probabilities using the rank and FALSE create selection probabilities proportionate to fitness. Defaults to TRUE.}
+\item{usingRank}{logic; TRUE define selection probabilities using the rank and FALSE create selection probabilities proportionate to fitness; defaults to TRUE}
 }
 \description{
 This function create selection probabilities of the chromosomes.

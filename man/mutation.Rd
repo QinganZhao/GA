@@ -7,9 +7,9 @@
 mutation(chromosome, probability = 0.01)
 }
 \arguments{
-\item{chromosome}{is your initial set of chromosomes}
+\item{chromosome}{vector; one chromosome with genes 0/1}
 
-\item{probability}{What is the probability of mutation? Defaults to 0.01.}
+\item{probability}{numeric; below or equal to 1 and above or equal to 0; What is the probability of mutation? Defaults to 0.01}
 }
 \description{
 This function mutate the chromosomes.

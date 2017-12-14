@@ -8,17 +8,17 @@ evaluation(X, Y, currentGeneration, popNum = 100, reg = "lm",
   criterion = "AIC")
 }
 \arguments{
-\item{X}{is a matrix containing the variables in the model.}
+\item{X}{matrix/dataframe; predictors}
 
-\item{Y}{is a vector of observations to be used in the fitting process.}
+\item{Y}{vector/matrix/dataframe; observations to be used in the fitting process}
 
-\item{currentGeneration}{is the initialized generation and the selectively produced generations.}
+\item{currentGeneration}{matrix; selectively produced generations}
 
-\item{popNum}{What is the population size of chromosomes? Default to 100.}
+\item{popNum}{integer; What is the population size of chromosomes? Default to 100}
 
-\item{reg}{What is the regression type? Default to lm.}
+\item{reg}{string; 'lm'/'glm; What is the regression type? Default to 'lm'}
 
-\item{criterion}{What is the objective criterion function? Default to AIC.}
+\item{criterion}{string; function name; What is the objective criterion function? Default to 'AIC'}
 }
 \description{
 This function evaluate the fitness value of chromosomes.

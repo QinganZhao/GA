@@ -6,8 +6,8 @@
 #' support function: rankSelection()
 #'
 #' This function create selection probabilities of the chromosomes. 
-#' @param dfCurrent is your initial set of chromosomes.
-#' @param usingRank TRUE define selection probabilities using the rank and FALSE create selection probabilities proportionate to fitness. Defaults to TRUE. 
+#' @param dfCurrent dataframe; one column corresponding to the genes (string), and one to the AIC values of each chromosome
+#' @param usingRank logic; TRUE define selection probabilities using the rank and FALSE create selection probabilities proportionate to fitness; defaults to TRUE 
 #' @keywords rankSelection
 #' @export
 #' @examples

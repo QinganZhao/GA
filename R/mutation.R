@@ -9,16 +9,16 @@
 
 
 #FUNCTIONS:
-#' support function: doMutation()
+#' support function: mutation()
 #'
 #' This function mutate the chromosomes. 
 #' @param chromosome is your initial set of chromosomes
 #' @param probability What is the probability of mutation? Defaults to 0.01.
-#' @keywords doMutation
+#' @keywords mutation
 #' @export
 #' @examples
-#' doMutation()
-doMutation <- function(chromosome, probability = 0.01)
+#' mutation()
+mutation <- function(chromosome, probability = 0.01)
 {
   pVector <- runif(length(chromosome))
   chromosome <- (1-chromosome)*(pVector<=probability)+(chromosome)*(pVector>probability)

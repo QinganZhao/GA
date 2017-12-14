@@ -67,8 +67,8 @@ breed <- function(chromoSet, cross_cutNum = 1, mutation_prob = 0.01){
     }
     
     #mutation
-    child_gene_mat1[i, ] <- doMutation(as.numeric(chro_for_mut[1, ]), mutation_prob)
-    child_gene_mat2[i, ] <- doMutation(as.numeric(chro_for_mut[2, ]), mutation_prob)
+    child_gene_mat1[i, ] <- mutation(as.numeric(chro_for_mut[1, ]), mutation_prob)
+    child_gene_mat2[i, ] <- mutation(as.numeric(chro_for_mut[2, ]), mutation_prob)
   }
   
   #put two groups together, and the next generation is obtained

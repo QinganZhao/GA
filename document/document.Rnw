@@ -104,7 +104,7 @@ The \textit{breed} function combines the \textit{crossover} function and the \te
 Users should be able to import the GA package with the following code (note that \textsf{dplyr} and \textsf{devtools} packages should be installed first):
 
 <<r-chunk1, eval=FALSE>>=
-devtools::install_github('arm4nn/GA')
+devtools::install_github('QinganZhao/GA')
 library(GA)
 @
 

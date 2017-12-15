@@ -6,7 +6,7 @@
 
 [Arman Jabbari](https://github.com/arm4nn)
 
-[Qingan Zhao](https://github.com/QinganZhao)
+[Qingan Zhao](https://franklinzhao.top)
 
 [Mia Zhong](https://github.com/Mia-Zhong)
 

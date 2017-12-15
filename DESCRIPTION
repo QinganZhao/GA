@@ -10,7 +10,7 @@ Authors@R: c(
     )
 Description: An R package for variable selection in regression problems based on genetic algorithm
 Depends: R (>= 3.4.1)
-License: What license is it under?
+License: MIT
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1

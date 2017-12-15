@@ -16,7 +16,7 @@
 	
 \maketitle
 \renewcommand{\figurename}{Fig.}
-\centerline{\large{Github user name: \textbf{Qingan}}}
+\centerline{\large{Github user name: \textbf{QinganZhao}}}
 
 <<setup, include=FALSE>>=
 library(knitr)

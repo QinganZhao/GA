@@ -2,9 +2,9 @@
 
 # GA
 ### An R package for variable selection in regression problems based on genetic algorithm
-[C&#244;me de Lassus Saint Geni&#232;s](https://github.com/ComedeLassus)  [Arman Jabbari](https://github.com/arm4nn)
+[C&#244;me de Lassus Saint Geni&#232;s](https://github.com/ComedeLassus),  [Arman Jabbari](https://github.com/arm4nn)
 
-[Franklin Zhao](http://franklinzhao.top)  [Mia Zhong](https://github.com/Mia-Zhong)
+[Franklin Zhao](http://franklinzhao.top) and [Mia Zhong](https://github.com/Mia-Zhong)
 
 <div align=left>
 

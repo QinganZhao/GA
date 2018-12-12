@@ -98,7 +98,7 @@ test_that('finds best predictors with glm', {
 context('REAL DATA: Test if most strong predictors in a real-world dataset can be selected \n')
 
 test_that('test if most strong predictors in a real-world dataset can be selected', {
-  download.file('https://github.com/QinganZhao/Data-Science/blob/master/database/JGSSdata?raw=true', 'jp')
+  download.file('https://github.com/QinganZhao/Statistical-Computing/blob/master/database/JGSSdata?raw=true', 'jp')
   load('jp')
   jpY <- jp[,c("SZINCOMA")]
   Yjp <- as.matrix(log(jpY))
